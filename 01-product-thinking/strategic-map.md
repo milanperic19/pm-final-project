@@ -1,11 +1,7 @@
-# Strategic Discovery Map
-
-> **Module 1 · Lab 1.** Repo file `01-product-thinking/strategic-map.md` — part of your submission.
-> Do the lab in the **Module 1 · Exercise 1 Guide** (linked from the Module 1 deck), then click **⬇ Download .md** — it saves as this exact file. Commit it here.
-> It's the discovery groundwork behind your `problem-hook.md`.
+# Strategic Discovery Map (Module 1)
 
 ## Responses
-
-- **Feature with no strategic answer (why is this a 12-week priority?):** _(not filled in)_
-- **Feature that looks "correct" but has zero strategic weight:** _(not filled in)_
-- **V3 vs your Step 1 baseline — what changed, and was it your PM knowledge that forced usefulness?:** _(not filled in)_
+- **Write one feature from the map that, if an engineer asked “why is this a priority for our 12-week roadmap?”, you honestly could not give a strategic answer for.:** Integrations: almost all of the integrations it came up with (apple health, google fit etc.) would not necessarily help improve user experience and can come later if necessary (when we understand what and why needs to be integrated)
+- **Write one feature that looks “correct” for the app but has zero strategic weight, you have no idea if it helps the company make money or whether a single user actually asked for it.:** Drink types (ability to pick and log different drinks) – unclear why we would need this if the purpose is for people to track water intake specifically. Will people not use the app because they cannot track their tea intake? Will people be more engaged if they do? It doesn't seem  that this would move the needle for users and consequently for the business.
+- **Compare V3 to your Step 1 baseline. What changed, and is the output objectively better, did the AI get smarter, or did your added PM knowledge (JTBD, effort/impact, retention) force it to be useful?:** With more extensive context, the mind map contained features and build plans that were contextualised with customer needs and pains, so a product-market fit was clearer. It was a much better starting point and a framework for further development; even if incoherent/slightly nonsensical in some areas, it was easier to edit and build on.
+- **Key takeaway: how does this prove the PM’s role is to think while the AI’s role is to execute?:** Without the knowledge to form the prompt and clear direction on what to focus on/build, AI responses are unhelpful, as AI is better for executing tasks, but not conceptualizing and strategizing, which is where the PM's role comes in. PM needs to make the requirements clear and define what's good to get "good outputs".However, I think AI gives us a good starting point for brainstorming and even introducing new (helpful) ideas if the prompt is not overly specific.
