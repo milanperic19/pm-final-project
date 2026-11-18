@@ -1,0 +1,208 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Velocity Driver Journey</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a route line with four stops, like a driver's manifest; stacks vertically on phones */
+:root {
+  --bg: #f3f4f1;
+  --surface: #ffffff;
+  --fg: #1c2229;
+  --muted: #5d6670;
+  --line: #d8dbd6;
+  --accent: #d9560f;
+  --accent-soft: #fbe6d8;
+  --before: #8a939c;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15191d; --surface: #1e2328; --fg: #e9ebe7; --muted: #9aa3ab;
+    --line: #333a41; --accent: #f07a36; --accent-soft: #3a2518; --before: #7c858e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15191d; --surface: #1e2328; --fg: #e9ebe7; --muted: #9aa3ab;
+  --line: #333a41; --accent: #f07a36; --accent-soft: #3a2518; --before: #7c858e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 15px; line-height: 1.5;
+}
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-block: 40px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 36px;
+}
+.eyebrow {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--accent);
+}
+h1 {
+  font-family: var(--display); font-weight: 700; font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.02; margin: 6px 0 10px; text-wrap: balance; letter-spacing: .01em;
+}
+h2 {
+  font-family: var(--display); font-weight: 700; font-size: 26px;
+  margin: 0 0 14px; letter-spacing: .01em;
+}
+.lede { max-width: 68ch; color: var(--muted); margin: 0; }
+.persona {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px;
+  background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+}
+.persona > div { background: var(--surface); padding: 16px 18px; min-width: 0; }
+.label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 4px;
+}
+.persona p { margin: 0; }
+
+/* Route timeline */
+.route { position: relative; }
+.track {
+  position: absolute; left: 12.5%; right: 12.5%; top: 21px; height: 4px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 14px, transparent 14px 22px);
+  border-radius: 2px;
+}
+.stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; position: relative; }
+.stage { display: flex; flex-direction: column; align-items: stretch; gap: 14px; min-width: 0; }
+.pin {
+  align-self: center; width: 46px; height: 46px; border-radius: 50%;
+  background: var(--accent); color: #fff; display: grid; place-items: center;
+  font-family: var(--display); font-weight: 700; font-size: 22px;
+  box-shadow: 0 0 0 6px var(--bg);
+}
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px; display: flex; flex-direction: column; gap: 12px; height: 100%;
+}
+.card h3 {
+  font-family: var(--display); font-weight: 700; font-size: 24px; margin: 0;
+  line-height: 1.05; letter-spacing: .01em;
+}
+.tag {
+  font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .04em;
+}
+.row { display: flex; flex-direction: column; gap: 2px; }
+.row p { margin: 0; font-size: 14px; }
+.arrow { color: var(--accent); font-weight: 600; }
+.pain {
+  margin-top: auto; padding: 10px 12px; border-radius: 8px;
+  background: var(--accent-soft); font-size: 13px;
+}
+.pain .label { color: var(--accent); }
+.ref { font-family: var(--mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+.before { font-size: 13px; color: var(--before); border-top: 1px dashed var(--line); padding-top: 10px; }
+.before s { text-decoration-thickness: 1px; }
+
+/* Advantages */
+.adv { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; list-style: none; margin: 0; padding: 0; }
+.adv li { border-top: 3px solid var(--accent); padding-top: 12px; min-width: 0; }
+.adv strong { display: block; font-family: var(--display); font-size: 21px; font-weight: 700; letter-spacing: .01em; margin-bottom: 4px; }
+.adv p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.note {
+  border: 1px dashed var(--line); border-radius: 10px; padding: 14px 18px;
+  font-size: 13.5px; color: var(--muted); max-width: 80ch;
+}
+.note p { margin: 0; }
+.note strong { color: var(--fg); }
+
+@media (max-width: 860px) {
+  .persona, .adv { grid-template-columns: minmax(0, 1fr); }
+  .track { left: 22px; right: auto; top: 23px; bottom: 23px; width: 4px; height: auto;
+    background: repeating-linear-gradient(180deg, var(--accent) 0 14px, transparent 14px 22px); }
+  .stages { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .stage { flex-direction: row; align-items: flex-start; }
+  .pin { align-self: flex-start; flex: none; }
+  .card { flex: 1; min-width: 0; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">RouteLogic Velocity · Future state</div>
+    <h1>The driver's day, one tap at a time</h1>
+    <p class="lede">Velocity gives every role a home screen built around the jobs they do most. For drivers, starting a route and marking a stop delivered takes one tap, so the app is faster than texting dispatch or carrying a paper backup. Dispatchers benefit too: when drivers complete stops in the app, the board stays accurate.</p>
+  </header>
+
+  <section class="persona" aria-label="Persona">
+    <div><span class="label">Persona</span><p>Experienced delivery driver working against the clock on dozens of stops a day, often in poor weather or weak signal.</p></div>
+    <div><span class="label">Goal</span><p>Get through each stop as fast as possible, with the app keeping pace instead of slowing them down.</p></div>
+    <div><span class="label">Today's workaround</span><p>Skips the three-screen flow and texts dispatch instead; keeps a paper manifest as backup.</p></div>
+  </section>
+
+  <section>
+    <h2>Four stops on the route</h2>
+    <div class="route">
+      <div class="track" aria-hidden="true"></div>
+      <ol class="stages">
+        <li class="stage">
+          <div class="pin">1</div>
+          <div class="card">
+            <div><div class="tag">Depot · 07:00</div><h3>Start shift</h3></div>
+            <div class="row"><span class="label">User action</span><p>Opens app to a driver home screen <span class="arrow">→</span> Start Route is the first button.</p></div>
+            <div class="row"><span class="label">Internal state</span><p>Feels in control <span class="arrow">→</span> starts the day without hunting through menus.</p></div>
+            <div class="pain"><span class="label">Pain point addressed</span>Start Route buried under unused features. <span class="ref">BUG-2079 · UXR-11</span></div>
+            <div class="before">Before: <s>2–3 menu levels deep</s></div>
+          </div>
+        </li>
+        <li class="stage">
+          <div class="pin">2</div>
+          <div class="card">
+            <div><div class="tag">Between stops</div><h3>On the road</h3></div>
+            <div class="row"><span class="label">User action</span><p>Gets a push alert when a route changes <span class="arrow">→</span> reroutes in seconds.</p></div>
+            <div class="row"><span class="label">Internal state</span><p>Trusts the route <span class="arrow">→</span> no second-guessing or checking WhatsApp.</p></div>
+            <div class="pain"><span class="label">Pain point addressed</span>Reassignments arrive 8–15 min late with no alert. <span class="ref">BUG-2044</span></div>
+            <div class="before">Before: <s>wrong turns on stale routes</s></div>
+          </div>
+        </li>
+        <li class="stage">
+          <div class="pin">3</div>
+          <div class="card">
+            <div><div class="tag">Doorstep · ×dozens</div><h3>At the doorstep</h3></div>
+            <div class="row"><span class="label">User action</span><p>Marks the stop delivered with one tap <span class="arrow">→</span> back to the van straight away.</p></div>
+            <div class="row"><span class="label">Internal state</span><p>Relieved <span class="arrow">→</span> the app is now faster than texting dispatch.</p></div>
+            <div class="pain"><span class="label">Pain point addressed</span>Three taps across three screens per delivery. <span class="ref">BUG-2055 · UXR-01</span></div>
+            <div class="before">Before: <s>3 screens, then a text</s></div>
+          </div>
+        </li>
+        <li class="stage">
+          <div class="pin">4</div>
+          <div class="card">
+            <div><div class="tag">Return to depot</div><h3>End of shift</h3></div>
+            <div class="row"><span class="label">User action</span><p>Closes the route after the app syncs <span class="arrow">→</span> no manifest or texts to reconcile.</p></div>
+            <div class="row"><span class="label">Internal state</span><p>Confident <span class="arrow">→</span> every delivery is recorded without extra effort.</p></div>
+            <div class="pain"><span class="label">Pain point addressed</span>Paper backups and manual relays. <span class="ref">UXR-12 · UXR-01</span></div>
+            <div class="before">Before: <s>texts and paper ticks</s></div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why it beats texting dispatch</h2>
+    <ul class="adv">
+      <li><strong>One tap beats a text</strong><p>Faster for the driver, so there's no reason to work around the app.</p></li>
+      <li><strong>A structured record</strong><p>Each delivery is logged with a timestamp, location and photo, not a loose message.</p></li>
+      <li><strong>No double handling</strong><p>Dispatchers stop relaying texts, and reporting gets complete data.</p></li>
+    </ul>
+  </section>
+
+  <aside class="note">
+    <p><strong>Scope note:</strong> stages 1 and 3 come from the role-based home screen. Stage 2 (push alerts) and reliable sync in stage 4 also depend on fixes to sync and reliability (BUG-2044, BUG-2072).</p>
+  </aside>
+</div>
+
+</body></html>
