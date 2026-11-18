@@ -15,3 +15,4 @@ Move to the next stop, leaving the dispatcher to update the system.
 
 The paper manifest comes from the focus group: five of seven drivers keep one “just in case the app dies” (UXR-12). Diego doesn’t mention it himself, so in the steps it stands for typical driver behaviour rather than his own words. If you want to stick strictly to Diego, drop step 4.
 - **Your journey map, a shareable link, or the map file you committed (e.g. journey-map.html):** Velocity Driver Journey.html
+https://github.com/milanperic19/pm-final-project/blob/631152bfae0b03612c6ec7726dfd2a7005ebdda9/02-discovery/Velocity%20Driver%20Journey.html
