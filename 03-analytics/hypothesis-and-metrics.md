@@ -1,17 +1,31 @@
-# Hypothesis & Success Metrics
+# Hypothesis & Success Metrics (Module 3)
 
-> **Module 3 · ★ Deliverable 3.** Repo file `03-analytics/hypothesis-and-metrics.md` — part of your submission.
-> Do the lab in the **Module 3 · Exercise Guide** (linked from the Module 3 deck), then click **⬇ Download .md** — it saves as this exact file. Commit it here.
-> It feeds the **Problem, Value & Hypothesis** slide of your Module 6 final deck.
+## Pre-work · Hypothesis check
+- **Role , who you are solving for (from M2):** An experienced delivery driver working against the clock on dozens of stops a day, often in poor weather or with weak signal.
+- **Goal , what this user is ultimately trying to achieve:** To get through each stop as fast as possible, with the app keeping pace instead of slowing them down.
+- **Friction / moment of misery , the specific pain blocking their goal:** Standing at a doorstep in the rain, package in one hand, tapping through three screens to mark a stop delivered (BUG-2055). He’s given up and now texts his dispatcher instead.
+- **Current workaround , the external tool or manual process they rely on (M2):** The phone’s text messaging, used to confirm deliveries to the dispatcher instead of marking them in the app, and a paper manifest carried as a backup in case the app fails.
+- **Problem Hook , your one-sentence framing of the business crisis (M1):** Our most powerful product has become our slowest one, as frontline users shift to other tools to avoid the complexity of our platform, and we are at risk of losing our enterprise accounts to leaner competitors.
+- **Value Proposition , the outcome your initiative promised to deliver (M1):** Velocity gives every role a home screen built around the work they do most. Drivers start routes and mark stops delivered in one tap, making the app faster than texting dispatch, and dispatchers get a board they can trust. Enterprise reporting and compliance stay in the product for the roles that need them, out of the way for those that don’t. We need to launch now: our largest customer is already trialling a leaner competitor.
 
-## Finalized product hypothesis
+## Read your data snapshots
+- **Does the funnel data confirm your M2 friction point, or does it tell a different story? Note where the numbers align with the qualitative pain you found and where they diverge.:** _(not filled in)_
+- **Do the retention patterns align with the workaround your M2 persona used to find content? Note what the Mo. 0→1 drop suggests about the onboarding experience your persona described as frustrating.:** _(not filled in)_
+- **Does the LTV gap and the content mix (61% trending for Wanderers) confirm the moment of misery your persona described? Note which segment your persona is in and whether the data confirms their pain.:** _(not filled in)_
+- **Does the low adoption confirm your persona is burdened by tools they don’t use? Note whether the low scheduling adoption (42%) for coordinators matches your M2 moment of misery.:** Yes: drivers rely on three features and barely touch the other three, which supports the clutter described in the interviews. The 42% coordinator scheduling figure is a strong signal of a prominent moment of misery for a different persona, so could consider to switch the focus.
+- **Does the workflow data match the manual process or hack you documented in M2? Note whether the specific drop-offs or time gaps explain why your persona avoids the digital tool.:** No, because I focused on the drivers. For the dispatchers/coordinators, it does match the research: they run their shift through WhatsApp because the platform is too slow and the data reflects this: after assigning routes, there is a major drop-off in usage when it comes to logging compliance checks, completing shift handoffs and filing daily reports (last step, only 18% make it). I'd also highlight that even after loading fleet view, a quarter of coordinators stop using the app, which is quite early in the journey, before they have barely used any features.
+- **Look at the CSAT heatmap. Which specific cell most directly maps to your persona’s friction? Note how the NPS trend justifies the urgency of your M1 Problem Hook.:** Manager satisfaction with Compliance (3.9) and Reporting (4.5) must not drop. Managers are the buyers, and simplifying compliance for coordinators mustn't reduce the data or quality they rely on.
 
-> Based on [qual + quant evidence], I believe that [solving X] for [persona] will result in [outcome], as measured by a [X%] change in [success metric]. I will protect [guardrail metric] and make a go/no-go decision after [decision window].
-
-## Success metrics
-
-| Metric | Type | Target | Why it matters |
-|---|---|---|---|
-| _North-star_ | | _____ | _____ |
-| _Leading indicator_ | | _____ | _____ |
-| _Guardrail_ | | _____ | _____ |
+## Step 3 · Craft your hypothesis
+- **Qualitative evidence (from M2) , quote the specific friction / moment of misery for your persona:** "I reassign a route and the driver doesn't see it for ten, fifteen minutes… We keep a WhatsApp group as the real system." (Fleet dispatcher, UXR-02). Coordinators rely on WhatsApp because the platform is too slow for time-critical work.
+- **Quantitative evidence (from M3) , name the metric or data point that confirms the pain; cite the number:** After route assignment, every step takes far longer than it should. Compliance checks, shift handoffs and daily reports take 2.5 to 5 times the benchmark, and only 18% of coordinators complete all of them. Coordinators also rate these areas poorly: compliance scores 2.2 out of 5 and reporting 1.3. Coordinator NPS has fallen from +18 to −12.
+- **Persona , role, goal, and the friction you confirmed in the reconciliation steps:** A fleet coordinator who manages drivers and routes throughout the shift. They want to run the whole shift in one place, quickly. In the app they get stuck on slow, complex steps after route assignment, especially compliance checks and shift handoffs, so they turn to WhatsApp.
+- **Problem you are solving , one sentence describing the specific friction this initiative removes:** Compliance checks and shift handoffs are so slow and complex that coordinators abandon the app after assigning routes.
+- **Strategic outcome , what behaviour change do you expect, and how does it map to retention / revenue / churn?:** Our main goal is for more coordinators to complete their whole daily workflow in RouteLogic, not just route assignment. Today only 18% get to the end; most drop off soon after assigning routes and switch to WhatsApp and other tools for compliance, handoffs and reporting. When coordinators can finish all their essential tasks in our platform, they no longer need workarounds, and they no longer have a reason to look at competitors.
+- **Primary success metric (initiative signal) , the leading indicator that tells you the gap is closing:** End-to-end workflow completion among coordinators, from 18% to 50%. Supported by step-level completion rates and time per step falling toward benchmark (compliance 14.6 → 3 minutes, handoff 11.3 → 4.5, reporting 9.7 → 3).
+- **Guardrail metric (product signal) , the metric that must NOT drop; it protects your existing base:** Manager satisfaction with Compliance (3.9) and Reporting (4.5)  and adoption of these features must not drop. Managers are the buyers, and simplifying compliance for coordinators mustn't reduce the data or quality they rely on.
+- **Decision window , how much time or data before you scale, pivot, or kill? minimum threshold to proceed?:** An 8-week pilot with a group of coordinator accounts using Velocity mode, a role-based dashboard that speeds up the app by tackling performance issues and shows coordinators only the features they need:
+Scale if compliance completion reaches 65%+ and completion time is 6 minutes or less, with the guardrail holding.
+Pivot to only tackle complexity if completion time improves, but completion rate doesn't, since that would mean app performance/speed isn't the real barrier.
+Kill if neither metric moves meaningfully by week 8.
+- **Draft your full hypothesis sentence , one to three sentences; quote the metric, name the persona, name the outcome:** We believe that giving coordinators Velocity mode, a faster, role-based dashboard focused on the tasks they do every day, will lead them to complete their whole shift in RouteLogic instead of switching to WhatsApp and other tools. We'll know we're right when end-to-end workflow completion rises from 18% to 35%+ and compliance checks take 6 minutes or less within 8 weeks, without manager satisfaction with compliance or reporting dropping.
